@@ -1,7 +1,16 @@
 //import the file system functionality
 var fs = require ("fs")
+var foldertoread = process.argv[2]
 
-fs.readdir ("./resources", function (error,files){
+
+
+if (foldertoread == undefined)
+{
+    console.log ("please specify a folder")
+    return
+}
+
+fs.readdir (foldertoread, function (error,files){
     if (error)
     {
         console.log ("error" + error)
@@ -12,7 +21,7 @@ fs.readdir ("./resources", function (error,files){
    files.forEach(function (file)
    
    {
-      fs.readFile("./resources/" + file,"utf8", function (error, filecontents)
+      fs.readFile(foldertoread + "/" + file,"utf8", function (error, filecontents)
       {
           if (error)
           {
@@ -24,4 +33,4 @@ fs.readdir ("./resources", function (error,files){
       }
      )
    })
-} )
+})
